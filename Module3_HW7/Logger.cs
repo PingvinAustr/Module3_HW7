@@ -84,9 +84,12 @@ namespace Module3_HW7
                     }
                 }
 
-                if (_totalLogs % ConfigController.CurrentConfigs.Number == 0)
+                lock (_lock)
                 {
+                    if (_totalLogs % ConfigController.CurrentConfigs.Number == 0)
+                    {
                         OnBackupCreationTime(_logBackupEntries);
+                    }
                 }
             }
         }
